@@ -10,7 +10,9 @@ import java.util.Scanner;
 
 /**
  *
- * @author stage
+ * @author mtezza9@gmail
+ * @version 1.0 2019-06-26
+ *
  */
 public class Application {
 

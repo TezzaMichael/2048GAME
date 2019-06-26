@@ -6,44 +6,68 @@
 package pkg2048.v1.pkg0;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
 /**
  *
- * @author mtezza9@gmail
+ * @author mtezza9@gmail && alessandro.bonizzato01@gmail.com
  * @version 1.0 2019-06-26
+ * 
  */
 public class table {
-    private Integer lista[][];
+    private final Integer lista[][];
     private boolean gameover;
     public table(boolean gameover){
         lista = new Integer[4][4];
         this.gameover = gameover;
     }
     
+    /**
+     *
+     * @param value valore della casella
+     * @param riga la riga della casella
+     * @param colonna la colonna della casella
+     */
     public void setvalue(int value, int riga, int colonna){
         lista[riga][colonna] = value;
     }
+
+    /**
+     *
+     * @param riga
+     * @param colonna
+     * @return il valore della casella
+     */
     public int getvalue(int riga, int colonna){
         return lista[riga][colonna];
     }
     
+    /**
+     *
+     * @param value
+     */
     public void setgameover(boolean value){
         gameover = value;
     }
+
+    /**
+     *
+     * @return true se è gameover, false se non è gameover
+     */
     public boolean getgameover(){
         return gameover;
     }
     
+    /**
+     *
+     * @throws IOException
+     */
     public void UP() throws IOException{
         for(int col=0; col<4; col++){
             if(getvalue(0,col) == getvalue(1,col) && getvalue(0,col) != 0 ){
@@ -128,13 +152,13 @@ public class table {
                setvalue(0,3,col);
             }
         }
-        ArrayList<Integer> mazzo = new ArrayList<Integer>(1);
+        ArrayList<Integer> mazzo = new ArrayList<>(1);
         mazzo.add(1);
         mazzo.add(2);
         mazzo.add(3);
         mazzo.add(4);
         Collections.shuffle(mazzo);
-         ArrayList<Integer> numeri = new ArrayList<Integer>(1);
+         ArrayList<Integer> numeri = new ArrayList<>(1);
         numeri.add(2);
         numeri.add(2);
         numeri.add(2);
@@ -163,6 +187,11 @@ public class table {
                 }
         }
     }
+
+    /**
+     *
+     * @throws IOException
+     */
     public void DOWN() throws IOException{
         for(int col=0; col<4; col++){
             if(getvalue(3,col) == getvalue(2,col) && getvalue(3,col) != 0 ){
@@ -246,13 +275,13 @@ public class table {
             }
            
         }
-        ArrayList<Integer> mazzo = new ArrayList<Integer>(1);
+        ArrayList<Integer> mazzo = new ArrayList<>(1);
         mazzo.add(1);
         mazzo.add(2);
         mazzo.add(3);
         mazzo.add(4);
         Collections.shuffle(mazzo);
-         ArrayList<Integer> numeri = new ArrayList<Integer>(1);
+        ArrayList<Integer> numeri = new ArrayList<>(1);
         numeri.add(2);
         numeri.add(2);
         numeri.add(2);
@@ -281,6 +310,11 @@ public class table {
                 }
         }
     }
+
+    /**
+     *
+     * @throws IOException
+     */
     public void LEFT() throws IOException{
         for(int rig=0; rig<4; rig++){
             if(getvalue(rig,0) == getvalue(rig,1) && getvalue(rig,0) != 0 ){
@@ -362,13 +396,13 @@ public class table {
                setvalue(0,rig,3);
             }
         }
-        ArrayList<Integer> mazzo = new ArrayList<Integer>(1);
+        ArrayList<Integer> mazzo = new ArrayList<>(1);
         mazzo.add(1);
         mazzo.add(2);
         mazzo.add(3);
         mazzo.add(4);
         Collections.shuffle(mazzo);
-         ArrayList<Integer> numeri = new ArrayList<Integer>(1);
+         ArrayList<Integer> numeri = new ArrayList<>(1);
         numeri.add(2);
         numeri.add(2);
         numeri.add(2);
@@ -397,6 +431,11 @@ public class table {
                 }
         }
     }
+
+    /**
+     *
+     * @throws IOException
+     */
     public void RIGHT() throws IOException{
         for(int rig=0; rig<4; rig++){
             if(getvalue(rig,3) == getvalue(rig,2) && getvalue(rig,3) != 0 ){
@@ -479,13 +518,13 @@ public class table {
                setvalue(0,rig,0);
             }
         }
-        ArrayList<Integer> mazzo = new ArrayList<Integer>(1);
+        ArrayList<Integer> mazzo = new ArrayList<>(1);
         mazzo.add(1);
         mazzo.add(2);
         mazzo.add(3);
         mazzo.add(4);
         Collections.shuffle(mazzo);
-         ArrayList<Integer> numeri = new ArrayList<Integer>(1);
+         ArrayList<Integer> numeri = new ArrayList<>(1);
         numeri.add(2);
         numeri.add(2);
         numeri.add(2);
@@ -564,6 +603,11 @@ public class table {
             }
             return false;
     }
+
+    /**
+     *
+     * @return
+     */
     public int SCORE() {
         int punteggio = 0;
         for(int a=0; a<4; a++){
@@ -574,8 +618,13 @@ public class table {
         return punteggio;
     }
     
+    /**
+     *
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
     public void File() throws FileNotFoundException, IOException {
-        ArrayList<String> Score = new ArrayList<String>(1);
+        ArrayList<String> Score = new ArrayList<>(1);
         FileReader fr;
         FileWriter fw;
         fr=new FileReader("src/pkg2048/v1/pkg0/file/high_score.txt");
@@ -659,7 +708,6 @@ public class table {
             Score_One = SCORE();
             System.out.print("Immettere Nome in Maiuscolo da 3 caratteri(es. CAP): ");
             Name_One = in.next();
-            flag = false;
         }else if(SCORE() > Score_Two && flag){
             Scanner in = new Scanner(System.in);
             Score_Ten = Score_Nine;
@@ -681,7 +729,6 @@ public class table {
             Score_Two = SCORE();
             System.out.print("Immettere Nome in Maiuscolo da 3 caratteri(es. CAP): ");
             Name_Two = in.next();
-            flag = false;
         }else if(SCORE() > Score_Three && flag){
             Scanner in = new Scanner(System.in);
             Score_Ten = Score_Nine;
@@ -701,7 +748,6 @@ public class table {
             Score_Three = SCORE();
             System.out.print("Immettere Nome in Maiuscolo da 3 caratteri(es. CAP): ");
             Name_Three = in.next();
-            flag = false;
         }else if(SCORE() > Score_Four && flag){
             Scanner in = new Scanner(System.in);
             Score_Ten = Score_Nine;
@@ -719,7 +765,6 @@ public class table {
             Score_Four = SCORE();
             System.out.print("Immettere Nome in Maiuscolo da 3 caratteri(es. CAP): ");
             Name_Four = in.next();
-            flag = false;
         }else if(SCORE() > Score_Five && flag){
             Scanner in = new Scanner(System.in);
             Score_Ten = Score_Nine;
@@ -735,7 +780,6 @@ public class table {
             Score_Five = SCORE();
             System.out.print("Immettere Nome in Maiuscolo da 3 caratteri(es. CAP): ");
             Name_Five = in.next();
-            flag = false;
         }else if(SCORE() > Score_Six && flag){
             Scanner in = new Scanner(System.in);
             Score_Ten = Score_Nine;
@@ -749,7 +793,6 @@ public class table {
             Score_Six = SCORE();
             System.out.print("Immettere Nome in Maiuscolo da 3 caratteri(es. CAP): ");
             Name_Six = in.next();
-            flag = false;
         }else if(SCORE() > Score_Seven && flag){
             Scanner in = new Scanner(System.in);
             Score_Ten = Score_Nine;
@@ -761,7 +804,6 @@ public class table {
             Score_Seven = SCORE();
             System.out.print("Immettere Nome in Maiuscolo da 3 caratteri(es. CAP): ");
             Name_Seven = in.next();
-            flag = false;
         }else if(SCORE() > Score_Eight && flag){
             Scanner in = new Scanner(System.in);
             Score_Ten = Score_Nine;
@@ -771,7 +813,6 @@ public class table {
             Score_Eight = SCORE();
             System.out.print("Immettere Nome in Maiuscolo da 3 caratteri(es. CAP): ");
             Name_Eight = in.next();
-            flag = false;
         }else if(SCORE() > Score_Nine && flag){
             Scanner in = new Scanner(System.in);
             Score_Ten = Score_Nine;
@@ -779,13 +820,11 @@ public class table {
             Score_Nine = SCORE();
             System.out.print("Immettere Nome in Maiuscolo da 3 caratteri(es. CAP): ");
             Name_Nine = in.next();
-            flag = false;
         }else if(SCORE() > Score_Ten && flag){
             Scanner in = new Scanner(System.in);
             Score_Ten = SCORE();
             System.out.print("Immettere Nome in Maiuscolo da 3 caratteri(es. CAP): ");
             Name_Ten = in.next();
-            flag = false;
         }
         fw = new FileWriter("src/pkg2048/v1/pkg0/file/high_score.txt");
         if(Score_One/1000 > 0){//Controllo 1

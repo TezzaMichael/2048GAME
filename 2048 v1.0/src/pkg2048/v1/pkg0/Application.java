@@ -24,11 +24,11 @@ public class Application {
     public static void main(String[] args) throws IOException {
         table GAME = new table(false);
         //GAME.writeFile();
-        for (int i = 0; i < 14 /*first 14 boxes are set to 0, last two to 2*/; i++){
-            GAME.setvalue(0, i/4, i%4);
+        for (int i = 0; i < table.N*table.N-2 /*first 14 boxes are set to 0, last two to 2*/; i++){
+            GAME.setvalue(0, i/table.N, i%table.N);
         }
-        GAME.setvalue(2, 3, 2);
-        GAME.setvalue(2, 3, 3);
+        GAME.setvalue(2, table.N-1, table.N-2);
+        GAME.setvalue(2, table.N-1, table.N-1);
 
 
         CustomPanel drawable = new CustomPanel(GAME);

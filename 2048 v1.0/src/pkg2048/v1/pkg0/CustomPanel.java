@@ -6,12 +6,13 @@ import java.awt.event.*;
 import java.io.IOException;
 
 class CustomPanel extends JPanel implements KeyListener{
-    private static final long serialVersionUID = 1L;
+    private final static int SIZE = 500;
+    private final static long serialVersionUID = 1L;
     private final table t;
 
     public CustomPanel(table t) {
         setFocusable(true);
-        setPreferredSize(new Dimension(500, 500));
+        setPreferredSize(new Dimension(SIZE, SIZE));
         addKeyListener(this);
         this.t = t;
     }
@@ -21,25 +22,32 @@ class CustomPanel extends JPanel implements KeyListener{
         super.paintComponent(g);
         
         g.setColor(new Color(0xFF555555));
-        g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 50));
+        g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, SIZE*2/table.N/5));
 
         FontMetrics metrics = g.getFontMetrics();
 
-        g.fillRect(0, 0, 500, 500);
+        g.fillRect(0, 0, SIZE, SIZE);
 
         if (t == null) return;
 
-        for (int row = 0; row < 4; row++)
-            for (int col = 0; col < 4; col++){
+        for (int row = 0; row < table.N; row++)
+            for (int col = 0; col < table.N; col++){
                 int val = t.getvalue(row, col);
                 g.setColor(getColor(val));
-                g.fillRoundRect(col*125+10, row*125+10, 105, 105, 10, 10);
+                g.fillRoundRect(
+                    (15*col+1)*SIZE/table.N/15,
+                    (15*row+1)*SIZE/table.N/15,
+                    SIZE*13/table.N/15,
+                    SIZE*13/table.N/15,
+                    SIZE/table.N/15,
+                    SIZE/table.N/15
+                );
                 g.setColor(val <= 8 ? Color.BLACK : Color.WHITE);
                 if (val == 0) continue;
                 g.drawString(
                     String.valueOf(val),
-                    (int) (62.5+125*col)-metrics.stringWidth(String.valueOf(val))/2,
-                    (int) (62.5+125*row)+metrics.getHeight()/2
+                    (int) ((2*col+1)*SIZE/table.N/2)-metrics.stringWidth(String.valueOf(val))/2,
+                    (int) ((2*row+1)*SIZE/table.N/2)+metrics.getHeight()/2
                 );
             }
     }

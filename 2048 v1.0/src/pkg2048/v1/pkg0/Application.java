@@ -7,6 +7,8 @@ package pkg2048.v1.pkg0;
 
 import java.io.IOException;
 import java.util.Scanner;
+import javax.swing.*;
+import java.awt.*;
 
 /**
  *
@@ -22,23 +24,24 @@ public class Application {
     public static void main(String[] args) throws IOException {
         table GAME = new table(false);
         //GAME.writeFile();
-        GAME.setvalue(0, 0, 0);
-        GAME.setvalue(0, 0, 1);
-        GAME.setvalue(0, 0, 2);
-        GAME.setvalue(0, 0, 3);
-        GAME.setvalue(0, 1, 0);
-        GAME.setvalue(0, 1, 1);
-        GAME.setvalue(0, 1, 2);
-        GAME.setvalue(0, 1, 3);
-        GAME.setvalue(0, 2, 0);
-        GAME.setvalue(0, 2, 1);
-        GAME.setvalue(0, 2, 2);
-        GAME.setvalue(0, 2, 3);
-        GAME.setvalue(0, 3, 0);
-        GAME.setvalue(0, 3, 1);
+        for (int i = 0; i < 14 /*first 14 boxes are set to 0, last two to 2*/; i++){
+            GAME.setvalue(0, i/4, i%4);
+        }
         GAME.setvalue(2, 3, 2);
         GAME.setvalue(2, 3, 3);
-         Scanner in = new Scanner(System.in);
+
+
+        CustomPanel drawable = new CustomPanel(GAME);
+        JFrame root = new JFrame("2048");
+        root.setResizable(false);
+        root.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        root.setContentPane(drawable);
+        root.pack();
+        root.setVisible(true);
+
+        // migrated to CustomPanel.java
+
+        /*Scanner in = new Scanner(System.in);
         System.out.println(GAME);
         while(!(GAME.getgameover())){
             System.out.print("PREMI 8-UP  6-RIGHT  2-DOWN  4-LEFT : ");
@@ -63,6 +66,6 @@ public class Application {
                 }
             }
         }
-    
+        in.close();*/
     }
 }

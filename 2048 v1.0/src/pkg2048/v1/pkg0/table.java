@@ -555,36 +555,35 @@ public class table {
     }
     @Override
     public String toString(){
-       String s = "";
-       for(int a=0; a<4; a++){
-           for(int b=0; b<4; b++){
-               if(lista[a][b] != 0){
-                   if(lista[a][b]/100 > 0){
-                       s+=lista[a][b];
-                   }else if(lista[a][b]/10 > 0){
-                       s+=lista[a][b];
-                       s+=" ";
-                   }else{
-                       s+= " ";
-                       s+=lista[a][b];
-                       s+=" ";
-                   }
-                   
-               }else{
-                   s+= "   ";
-               }
-               s+= "  ";
-           }
-           s+="\n";
-       }
-       return s;
+        String s = "";
+        for(int a=0; a<4; a++){
+            for(int b=0; b<4; b++){
+                if(lista[a][b] != 0){
+                    if(lista[a][b]/100 > 0){
+                        s+=lista[a][b];
+                    }else if(lista[a][b]/10 > 0){
+                        s+=lista[a][b];
+                        s+=" ";
+                    }else{
+                        s+= " ";
+                        s+=lista[a][b];
+                        s+=" ";
+                    }    
+                }else{
+                    s+= "   ";
+                }
+                s+= "  ";
+            }
+            s+="\n";
+        }
+        return s;
     }
 
     private void GAMEOVER() throws IOException {
         System.out.println("GAME OVER");
         File();
-        
-   }
+    }
+
     private boolean HELP(){
             for(int c=0; c<4; c++){
                 if(getvalue(0,c) == getvalue(1,c) || getvalue(1,c) == getvalue(2,c) || getvalue(2,c) == getvalue(3,c)){
@@ -627,12 +626,13 @@ public class table {
         ArrayList<String> Score = new ArrayList<>(1);
         FileReader fr;
         FileWriter fw;
-        fr=new FileReader("src/pkg2048/v1/pkg0/file/high_score.txt");
+        fr=new FileReader("pkg2048/v1/pkg0/file/high_score.txt");
         BufferedReader b;
-        b=new BufferedReader(fr);
+        b = new BufferedReader(fr);
         for(int a = 0; a<10; a++){
             Score.add(b.readLine());
         }
+        b.close();
         //System.out.println(Score);
         String Ten = Score.get(9);
         String[] part = Ten.split(" ");
@@ -708,6 +708,7 @@ public class table {
             Score_One = SCORE();
             System.out.print("Immettere Nome in Maiuscolo da 3 caratteri(es. CAP): ");
             Name_One = in.next();
+            in.close();
         }else if(SCORE() > Score_Two && flag){
             Scanner in = new Scanner(System.in);
             Score_Ten = Score_Nine;
@@ -729,6 +730,7 @@ public class table {
             Score_Two = SCORE();
             System.out.print("Immettere Nome in Maiuscolo da 3 caratteri(es. CAP): ");
             Name_Two = in.next();
+            in.close();
         }else if(SCORE() > Score_Three && flag){
             Scanner in = new Scanner(System.in);
             Score_Ten = Score_Nine;
@@ -748,6 +750,7 @@ public class table {
             Score_Three = SCORE();
             System.out.print("Immettere Nome in Maiuscolo da 3 caratteri(es. CAP): ");
             Name_Three = in.next();
+            in.close();
         }else if(SCORE() > Score_Four && flag){
             Scanner in = new Scanner(System.in);
             Score_Ten = Score_Nine;
@@ -765,6 +768,7 @@ public class table {
             Score_Four = SCORE();
             System.out.print("Immettere Nome in Maiuscolo da 3 caratteri(es. CAP): ");
             Name_Four = in.next();
+            in.close();
         }else if(SCORE() > Score_Five && flag){
             Scanner in = new Scanner(System.in);
             Score_Ten = Score_Nine;
@@ -780,6 +784,7 @@ public class table {
             Score_Five = SCORE();
             System.out.print("Immettere Nome in Maiuscolo da 3 caratteri(es. CAP): ");
             Name_Five = in.next();
+            in.close();
         }else if(SCORE() > Score_Six && flag){
             Scanner in = new Scanner(System.in);
             Score_Ten = Score_Nine;
@@ -793,6 +798,7 @@ public class table {
             Score_Six = SCORE();
             System.out.print("Immettere Nome in Maiuscolo da 3 caratteri(es. CAP): ");
             Name_Six = in.next();
+            in.close();
         }else if(SCORE() > Score_Seven && flag){
             Scanner in = new Scanner(System.in);
             Score_Ten = Score_Nine;
@@ -804,6 +810,7 @@ public class table {
             Score_Seven = SCORE();
             System.out.print("Immettere Nome in Maiuscolo da 3 caratteri(es. CAP): ");
             Name_Seven = in.next();
+            in.close();
         }else if(SCORE() > Score_Eight && flag){
             Scanner in = new Scanner(System.in);
             Score_Ten = Score_Nine;
@@ -813,6 +820,7 @@ public class table {
             Score_Eight = SCORE();
             System.out.print("Immettere Nome in Maiuscolo da 3 caratteri(es. CAP): ");
             Name_Eight = in.next();
+            in.close();
         }else if(SCORE() > Score_Nine && flag){
             Scanner in = new Scanner(System.in);
             Score_Ten = Score_Nine;
@@ -820,13 +828,15 @@ public class table {
             Score_Nine = SCORE();
             System.out.print("Immettere Nome in Maiuscolo da 3 caratteri(es. CAP): ");
             Name_Nine = in.next();
+            in.close();
         }else if(SCORE() > Score_Ten && flag){
             Scanner in = new Scanner(System.in);
             Score_Ten = SCORE();
             System.out.print("Immettere Nome in Maiuscolo da 3 caratteri(es. CAP): ");
             Name_Ten = in.next();
+            in.close();
         }
-        fw = new FileWriter("src/pkg2048/v1/pkg0/file/high_score.txt");
+        fw = new FileWriter("pkg2048/v1/pkg0/file/high_score.txt");
         if(Score_One/1000 > 0){//Controllo 1
             fw.write(Name_One + " " + Score_One +"\n");
         }else if(Score_One/100 > 0){
